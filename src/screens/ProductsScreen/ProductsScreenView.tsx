@@ -29,6 +29,9 @@ const ProductsScreenView = ({
       style={styles.list}
       data={products}
       renderItem={renderProductItem}
+      initialNumToRender={10}
+      removeClippedSubviews={true}
+      windowSize={4}
     />
   );
 };

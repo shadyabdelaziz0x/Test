@@ -5,6 +5,7 @@ import axios, {
   AxiosResponse,
   AxiosError,
 } from 'axios';
+import {handleApiError} from './error';
 
 class ApiClient {
   private client: AxiosInstance;
@@ -37,7 +38,7 @@ class ApiClient {
   };
 
   private handleError = (error: AxiosError): AxiosError => {
-    return error;
+    throw handleApiError(error);
   };
 
   public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
