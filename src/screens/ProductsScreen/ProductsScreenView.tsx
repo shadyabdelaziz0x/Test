@@ -1,12 +1,14 @@
 import React, {useCallback} from 'react';
-import {FlatList, ListRenderItem, StyleSheet} from 'react-native';
+import {FlatList, ListRenderItem, StyleSheet, Text} from 'react-native';
 import {ProductScreenViewProps} from './types';
 import {Product} from 'dataModels';
 import {Product as ProductComponent} from '../../components';
 
+//TODO:- show loading state
 const ProductsScreenView = ({
   products,
   onProductLiked,
+  error,
 }: ProductScreenViewProps) => {
   const renderProductItem: ListRenderItem<Product> = useCallback(
     ({item: product}) => {
@@ -24,7 +26,9 @@ const ProductsScreenView = ({
     },
     [onProductLiked],
   );
-  return (
+  return error ? (
+    <Text>{error}</Text>
+  ) : (
     <FlatList
       style={styles.list}
       data={products}
