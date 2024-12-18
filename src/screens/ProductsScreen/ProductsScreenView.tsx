@@ -12,7 +12,7 @@ const ProductsScreenView = ({
 }: ProductScreenViewProps) => {
   const renderEmptyList = useCallback(() => {
     return (
-      <View style={styles.list}>
+      <View style={styles.empty}>
         <Text>Fetching Products ...</Text>
       </View>
     );
