@@ -1,3 +1,4 @@
+import {Product} from 'dataModels';
 import ApiClient from './apiClient';
 
 class ProductsService {
@@ -7,12 +8,8 @@ class ProductsService {
     this.api = api;
   }
 
-  public getProducts(query: string) {
-    return this.api.get(`/?q=${query}`);
-  }
-
-  public getMovie(movieId: string) {
-    return this.api.get(`/?tt=${movieId}`);
+  public getProducts() {
+    return this.api.get<Array<Product>>('');
   }
 }
 
