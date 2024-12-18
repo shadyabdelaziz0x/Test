@@ -6,10 +6,8 @@ import {Product} from 'dataModels';
 const ProductsScreen = () => {
   const [productList, setProductList] = useState<Array<Product>>([]);
   const [error, setError] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setLoading(true);
     try {
       productsService
         .getProducts()
@@ -18,14 +16,9 @@ const ProductsScreen = () => {
         })
         .catch(err => {
           setError(err);
-        })
-        .finally(() => {
-          setLoading(false);
         });
     } catch (errr) {
       console.error(errr);
-    } finally {
-      setLoading(false);
     }
   }, []);
 
@@ -41,7 +34,6 @@ const ProductsScreen = () => {
     <ProductsScreenView
       products={productList}
       error={error}
-      loading={loading}
       onProductLiked={onProductLiked}
     />
   );

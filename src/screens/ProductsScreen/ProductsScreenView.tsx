@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {FlatList, ListRenderItem, StyleSheet, Text} from 'react-native';
+import {FlatList, ListRenderItem, StyleSheet, Text, View} from 'react-native';
 import {ProductScreenViewProps} from './types';
 import {Product} from 'dataModels';
 import {Product as ProductComponent} from '../../components';
@@ -10,6 +10,13 @@ const ProductsScreenView = ({
   onProductLiked,
   error,
 }: ProductScreenViewProps) => {
+  const renderEmptyList = useCallback(() => {
+    return (
+      <View style={styles.list}>
+        <Text>Fetching Products ...</Text>
+      </View>
+    );
+  }, []);
   const renderProductItem: ListRenderItem<Product> = useCallback(
     ({item: product}) => {
       return (
@@ -36,6 +43,7 @@ const ProductsScreenView = ({
       initialNumToRender={10}
       removeClippedSubviews={true}
       windowSize={4}
+      ListEmptyComponent={renderEmptyList}
     />
   );
 };
@@ -43,6 +51,11 @@ const ProductsScreenView = ({
 const styles = StyleSheet.create({
   list: {
     flex: 1,
+  },
+  empty: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
