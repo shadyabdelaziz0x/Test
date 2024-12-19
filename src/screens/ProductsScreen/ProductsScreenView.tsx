@@ -37,6 +37,7 @@ const ProductsScreenView = ({
     <Text>{error}</Text>
   ) : (
     <FlatList
+      keyExtractor={item => `${item.id}`}
       style={styles.list}
       data={products}
       renderItem={renderProductItem}
